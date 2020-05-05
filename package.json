@@ -32,8 +32,10 @@
     "standard": "^8.0.0"
   },
   "dependencies": {
-    "mumble-client": "^1.0.0",
     "promise": "^7.1.1",
     "websocket-stream": "^3.2.1"
+  },
+  "peerDependencies": {
+    "mumble-client": "^1.0.0"
   }
 }
