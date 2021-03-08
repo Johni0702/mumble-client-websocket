@@ -5,10 +5,13 @@ import MumbleClient from 'mumble-client'
 function connect (address, options, callback) {
   return new Promise((resolve, reject) => {
     var ws = websocketStream(address, ['binary'])
-      .on('error', reject)
-      .on('connect', () => resolve(ws))
+      .once('error', reject)
+      .once('connect', () => resolve(ws))
   }).then(ws => {
     return new MumbleClient(options).connectDataStream(ws)
+  },
+  _ => {
+    return Promise.reject('Connection closed!')
   }).nodeify(callback)
 }
 
